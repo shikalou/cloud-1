@@ -11,7 +11,7 @@ RUN		apt install nginx \
 		curl \
 		openssl -y
 
-RUN		openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=ldinaut.42.fr/UID=ldinaut"
+RUN		openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=/4.233.145.114UID=ldinaut"
 
 COPY		conf/nginx.conf /etc/nginx/nginx.conf
 RUN		chmod 755 /var/www/html

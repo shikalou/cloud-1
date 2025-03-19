@@ -48,6 +48,25 @@ services:
     restart: on-failure
     expose:
       - "9000"
+
+  phpmyadmin:
+    container_name: phpmyadmin    
+    restart: unless-stopped
+    build:
+      context: requirements/phpmyadmin
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - inception
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+    depends_on:
+      - mariadb
+    expose:
+      - "8080"
+
 volumes:
   wordpress:
     driver: local
