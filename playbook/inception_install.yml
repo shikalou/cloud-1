@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: create repository
+      shell: mkdir -p cloud-1/
+
+    - name: copy inception repo to server
+      copy:
+        src: ../inception/
+        dest: cloud-1/.
+    
+    - name: update env
+      shell: sed -i 's/TO_CHANGE/"{{ansible_ssh_host}}"/' cloud-1/srcs/.env
+    
+    - name: update nginx conf file
+      shell: sed -i 's/TO_CHANGE/"{{ansible_ssh_host}}"/' cloud-1/srcs/requirements/nginx/conf/nginx.conf
+
+    - name: change directory and run project
+      shell: cd cloud-1 ; sudo make up

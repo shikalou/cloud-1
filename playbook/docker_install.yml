@@ -1,0 +1,49 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: update apt package manager
+      apt:
+        update_cache: true
+
+    - name: install required packages
+      ansible.builtin.package:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - software-properties-common
+          - make
+        state: present
+
+    - name: Get GPG key for Docker repo
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    
+    - name: Add Docker repo
+      apt_repository:
+        repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        update_cache: true
+        state: present
+    
+    - name: Docker install
+      ansible.builtin.package:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+      
+    - name: activate docker at start
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Docker compose install
+      ansible.builtin.package:
+        name:
+          - docker-compose-plugin

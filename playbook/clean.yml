@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: clean volume and docker
+      shell: cd cloud-1 ; make fclean
+    
+    - name : rm repo
+      shell: cd .. ; rm -rf cloud-1

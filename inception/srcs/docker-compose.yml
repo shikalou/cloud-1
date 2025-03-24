@@ -50,7 +50,7 @@ services:
       - "9000"
 
   phpmyadmin:
-    container_name: phpmyadmin    
+    container_name: phpmyadmin
     restart: unless-stopped
     build:
       context: requirements/phpmyadmin
