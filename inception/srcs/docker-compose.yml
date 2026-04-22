@@ -56,16 +56,15 @@ services:
       context: requirements/phpmyadmin
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "8081:80"
     networks:
       - inception
+    env_file: .env
     environment:
       PMA_HOST: mariadb
       PMA_PORT: 3306
     depends_on:
       - mariadb
-    expose:
-      - "8080"
 
 volumes:
   wordpress:
