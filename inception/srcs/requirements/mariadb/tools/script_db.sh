@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Starting MySQL service"
-service mysql start
+service mariadb start
 
 sleep 3
 

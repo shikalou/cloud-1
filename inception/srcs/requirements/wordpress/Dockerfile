@@ -1,18 +1,12 @@
-FROM	debian:buster
+FROM	debian:bookworm
 
 RUN		apt update -y && apt upgrade -y
 
-# RUN		apt-get install -y wget \
-# 		php7.3 -y \
-# 		php-fpm -y \
-# 		php-mysql -y \
-# 		mariadb-client -y
-
 RUN apt-get install -y wget \
-	php7.3-cli \
-	php7.3-fpm \
-	php7.3-mysql \
-	mariadb-client
+    php-cli \
+    php-fpm \
+    php-mysql \
+    mariadb-client
 
 RUN		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN		chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && wp --info
@@ -25,7 +19,7 @@ RUN		cd /var/www && tar -xzf wordpress-6.2-fr_FR.tar.gz && rm -f wordpress-6.2-f
 RUN		chown -R www-data:www-data /var/www/*
 RUN		chmod -R 755 /var/www/*
 
-COPY	conf/www.conf /etc/php/7.3/fpm/pool.d/
+COPY conf/www.conf /etc/php/8.2/fpm/pool.d/
 
 EXPOSE	9000
 

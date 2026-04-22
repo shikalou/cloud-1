@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 10 
+sleep 10
 
 wp --info
 #if ! wp core is-installed; then
@@ -47,4 +47,4 @@ fi
 
 echo "Starting PHP-FPM..."
 # start the PHP FastCGI Process Manager (FPM) for PHP version 7.3 in the foreground
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php-fpm8.2 -F

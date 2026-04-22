@@ -1,4 +1,4 @@
-FROM		debian:buster
+FROM		debian:bookworm
 
 RUN		apt update -y && apt upgrade -y
 

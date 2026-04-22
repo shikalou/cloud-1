@@ -1,4 +1,4 @@
-FROM	debian:buster
+FROM	debian:bookworm
 
 RUN		apt update -y && apt upgrade -y
 RUN		apt-get install mariadb-server -y
@@ -14,7 +14,7 @@ COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 #RUN		mysql_install_db --user=mysql --datadir=/var/lib/mysql --auth-root-authentication-method=normal --skip-test-db
 #EXPOSE	3306
 
-COPY	tools/script_db.sh . 
+COPY	tools/script_db.sh .
 RUN	chmod +x ./script_db.sh
 
 ENTRYPOINT [ "./script_db.sh"]
